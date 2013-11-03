@@ -6,6 +6,7 @@
 
     <groupId>com.apiumtech.archetype</groupId>
     <artifactId>bootstrap-tomee</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <prerequisites>
@@ -449,7 +450,7 @@
                 <jpa.table.encoding>utf8</jpa.table.encoding>
             </properties>
             <build>
-                <finalName>youkeyword</finalName>
+                <finalName>yourapp</finalName>
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
