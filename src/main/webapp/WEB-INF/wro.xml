@@ -23,10 +23,6 @@
 		<css minimize="false">/vendor/fontawesome/css/*.css</css>
 		<css minimize="false">/vendor/zocial/*.css</css>
 		<css minimize="false">/vendor/nggrid/*.css</css>
-		<css minimize="false">/vendor/youkeyword/*.css</css>
-		<!--<css minimize="false">/vendor/epiceditor/assets/themes/base/*.css</css>-->
-		<!--<css minimize="false">/vendor/epiceditor/assets/themes/editor/*.css</css>-->
-		<!--<css minimize="false">/vendor/epiceditor/assets/themes/preview/*.css</css>-->
 	</group>
 
 	<group name="app">
