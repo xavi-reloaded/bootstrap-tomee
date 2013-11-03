@@ -1,0 +1,90 @@
+
+
+
+
+
+<div id="aula-trainning" ng-init="onInit()">
+    <div class="view">
+        <ul id="timeline" style="top: -{{screenOnFront}}%;">
+            <li>
+                <!--<button class="btn btn-mini btn-inverse" ng-click="back(1)"><i class="icon-arrow-up icon-white"></i>PREVIOUS ACTIVITY</button>-->
+                <div class="top text-right">
+                    <div ng-include="'templates/_toolbar.html'"></div>
+                </div>
+                <div class="activity-container">
+                    <form class="form-inline text-center">
+                        <input type="text" ng-model="url" placeholder=" a site url to analyze... " class="input-xxlarge" autofocus="true">
+                        <button type="submit" ng-click="onWgetClean()" class="btn btn-inverse">get</button>
+                    </form>
+                    <span class="btn-group ">
+                        <button ng-disabled="mainText.trim()==''" ng-click="onAnalyze()" class="btn btn-inverse">analyze it</button>
+                        <button ng-click="onClear()" class="btn btn-inverse">clear text</button>
+                        <button ng-click="onToggleEdition()" class="btn btn-inverse">toggle edition</button>
+                    </span>
+                    <div class="text-error" collapse="!charLimitExceeded">
+                        <p><strong>sorry, the text is too long so we cutted it </strong></p>
+                    </div>
+                    <textarea ng-model="mainText" style="height: 85%" ui:epic-editor></textarea>
+                </div>
+
+                <div class="bottom">
+                    <button class="btn btn-mini btn-inverse disabled" ng-click=""><i class="icon-arrow-down icon-white"></i>INFORMATION RETRIEVAL</button>
+                    <div class="btn-group dropup">
+                        <button class="btn btn-mini btn-inverse disabled" ng-click="">Completed<i class="icon-star icon-white"></i></button>
+                        <button class="btn dropdown-toggle btn-mini btn-inverse" data-toggle="dropdown">Share<i class="icon-share-alt icon-white"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a target="_blank" href="http://www.facebook.com/sharer.php?t">Facebook</a></li>
+                            <li><a target="_blank" href="http://twitter.com/intent/tweet?text=">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="certificate">
+                <div class="hero-unit">
+                    <h1>Congratulations!</h1>
+                    <p>You just completed the course<br>"<b>{{course.courseTitle}}</b>"!<br></p>
+                    <p class="btn btn-primary btn-large" ng-click="back(1)"><br/>Back to begin<br/><br/></p>
+                    <p>Share the good news</p>
+
+                    <div class="btn-group">
+                        <button class="btn btn-large btn-inverse">Facebook<i class="icon-star icon-white"></i></button>
+                        <button class="btn btn-large btn-inverse">Twitter <i class="icon-star icon-white"></i></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar">
+        <button class="btn close-btn btn-mini btn-inverse" ng-click="switchSidebar();">
+            <i id="sideBarImage" class="icon-forward icon-white"></i>
+        </button>
+        <div class="tab-container">
+            <tabs>
+                <pane heading="KEYWORDS">
+                    <accordion>
+                        <accordion-group ng-repeat="keyword in result" heading="{{keyword.lemma + '       (' + getHits(keyword) + ') ' + keyword.namedEntity }}">
+                            <div ng-repeat="meanning in keyword.meannings">{{meanning.concept}}</div>
+                            <ul ng-repeat="category in keyword.categories track by $index"><li>{{category}}</li></ul>
+                        </accordion-group>
+                    </accordion>
+                </pane>
+                <pane heading="PLAINTEXT">{{mainText}}<hr>{{result}}</pane>
+                <pane heading="SUGGESTED">
+                    <accordion>
+                        <accordion-group ng-repeat="keyword in result" heading="{{keyword.lemma}}" >
+                            <div ng-repeat="response in keyword.searchResponse">
+                                <span class="badge-success btn-small"> {{response.src}}</span>
+                                <hr>
+                                <p class="info">{{response.definition}}</p>
+                                <br>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </pane>
+            </tabs>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'templates/extractorInfoPopup.html'"></div>
+

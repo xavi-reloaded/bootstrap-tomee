@@ -1,0 +1,27 @@
+<div ng-controller="ToolbarCtrl">
+    <div class="form-horizontal left">
+        <div class="actions btn-group">
+            <div class="visible-desktop">
+                <div class="btn-group">
+                    <a class="btn" ng-click="toSettings()" title="${toolbar.settings}"><i class="icon-cog"></i></a>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a ng-click="toProfile()"><i class="icon-user"></i> ${toolbar.profile}</a></li>
+                        <li ng-show="session.admin"><a ng-click="toAdmin()"><i class="icon-edit"></i> ${toolbar.admin}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="logout"><i class="icon-off"></i> ${toolbar.logout}</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group donate">
+                    <a class="btn btn-success" type="button" ng-click="toHelp()" title="${toolbar.about} / ${toolbar.donate}">
+                        <i class="icon-info-sign"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div spinner shown="loading"></div>
+    </div>
+</div>
