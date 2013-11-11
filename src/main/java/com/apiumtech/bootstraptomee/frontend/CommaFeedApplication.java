@@ -155,14 +155,16 @@ public class CommaFeedApplication extends AuthenticatedWebApplication {
 
 	@Override
 	public Class<? extends Page> getHomePage() {
-		return WelcomePage.class;
+		return HomePage.class;
 	}
 
 	protected void setupInjection() {
 		try {
+            log.warn("I AM INTO SETUP INJECTION !!");
 			BeanManager beanManager = (BeanManager) new InitialContext().lookup("java:comp/BeanManager");
 			CdiContainer container = new CdiConfiguration(beanManager).setPropagation(ConversationPropagation.NONE).configure(this);
 			container.getNonContextualManager().inject(this);
+
 		} catch (NamingException e) {
 			log.warn("Could not locate bean manager. CDI is disabled.");
 		}
